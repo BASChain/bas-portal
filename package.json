@@ -32,7 +32,6 @@
     "gulp-rename": "^2.0.0",
     "gulp-rtlcss": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gulp-scss": "^1.4.0",
     "lite-server": "^2.5.4",
     "shelljs": "^0.8.3"
   },

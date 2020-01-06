@@ -9,7 +9,7 @@ const autoprefixer = require('gulp-autoprefixer'),
   path = require('path'),
   rename = require('gulp-rename'),
   rtlcss = require('gulp-rtlcss'),
-  sass = require('gulp-scss')
+  sass = require('gulp-sass')
   
 
 
