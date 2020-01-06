@@ -1,0 +1,43 @@
+{
+  "name": "bas-portal",
+  "version": "0.0.1",
+  "description": "BAS Portal",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bas:BASChain/bas-portal.git"
+  },
+  "keywords": [
+    "Blockchain",
+    "DNS"
+  ],
+  "author": "BAS",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.0",
+    "del": "^5.1.0",
+    "dotenv": "^8.2.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-rtlcss": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-scss": "^1.4.0",
+    "lite-server": "^2.5.4",
+    "shelljs": "^0.8.3"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  }
+}
