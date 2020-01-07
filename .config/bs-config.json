@@ -16,7 +16,7 @@
     "public/**.js # # reload",
     "public/**/*.css # # reloadcss",
     "public/**.html # # reload",
-    "build/**.css #  # reloadcss"
+    "build/**.css #  # reloadcss",
     "build/**/*.js # echo wow # reload"
   ],
   "interval"  : 500,

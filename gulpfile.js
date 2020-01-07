@@ -1,11 +1,11 @@
 'use strict'
 
 const pkgJson = require('./package.json')
-  
+
 const assign = require('lodash.assign'),
-  autoprefixer = require('gulp-autoprefixer'), 
+  autoprefixer = require('gulp-autoprefixer'),
   //babelify = require('babelify'),
-  //brfs = require('brfs'), 
+  //brfs = require('brfs'),
   browserify = require('browserify'),
   buffer = require('vinyl-buffer'),
   del = require('del'),
@@ -13,6 +13,7 @@ const assign = require('lodash.assign'),
   envify = require('envify/custom'),
   gulp = require('gulp'),
   gutil = require('gulp-util'),
+  jsoneditor = require('gulp-json-editor'),
   livereload = require('gulp-livereload'),
   path = require('path'),
   pify = require('pify'),
@@ -54,6 +55,8 @@ var imagePreOpts = {
 
 }
 
+/* ======================= Edit Version =========================== */
+
 /* ====================== clean ========================== */
 gulp.task('clean',function(){
   return del([`${ProPaths.BUILD}/**`])
@@ -77,7 +80,7 @@ createTasksForBuildJSModules({
 function createTasksForBuildJSModules({
   taskPrefix,jsModules,devMode,destination,bundleTaskOpts = {}
 }) {
-  const rootDir = ProPaths.SRC 
+  const rootDir = ProPaths.SRC
   bundleTaskOpts = Object.assign({
     devMode,
     sourceMapDir: '../sourcemaps',
@@ -107,7 +110,7 @@ function createTasksForBuildJSModules({
 function createTasks4Module(opts) {
   let suffixName = getBundleSuffix(opts.minifyBuild)
 
-  let bundler 
+  let bundler
 
   return performBundle
 
@@ -194,7 +197,7 @@ function generateBrowserify(opts,performBundle) {
 /* ====================== Bundles End Test Over ====================== */
 
 /* ====================== Scss ====================== */
-//handle 
+//handle
 
 gulp.task('build:scss',createScssBuildTask({
   src:`${ProPaths.SRC}/scss/main.scss`,
