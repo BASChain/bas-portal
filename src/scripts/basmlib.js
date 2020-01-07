@@ -1,0 +1,1 @@
+global.Web3 = require('web3')
