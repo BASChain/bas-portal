@@ -73,13 +73,6 @@ var imagePreOpts = {
 
 }
 
-<<<<<<< HEAD
-/* ================== Scripts ================= */
-const buildJsEntries = [
-  ''
-]
-
-=======
 /* ======================= Edit Version =========================== */
 const DAppInfoFile = `${ProPaths.CONFIG}/version-info.json`
 console.log(DAppInfoFile)
@@ -128,7 +121,7 @@ createTasksForBuildJSModules({
   destination:`${ProPaths.BUILD}/js`
 })
 
->>>>>>> 0c4269c0eb5a5a7da396f0bf67a7ad2810ef2d73
+
 
 function createTasksForBuildJSModules({
   taskPrefix,jsModules,devMode,destination,bundleTaskOpts = {}

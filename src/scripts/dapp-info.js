@@ -12,6 +12,16 @@ if(!window.Web3){
   DApp.Web3 = require('web3')
 }
 
+global.promisity = (inner) =>
+  new Promise((resolve,reject) => {
+    inner((err,data) => {
+      if(!err){
+        resolve(data)
+      }else{
+        reject(err)
+      }
+    })
+  });
 
 try{
   DApp.IFAPI = {};
@@ -29,15 +39,20 @@ try{
     DApp.web3 = new DApp.Web3(new DApp.Web3.providers.HttpProvider(providerUrl))
     let _mgr = DApp.runtime.abiManager.getManagerContract();
 
-    let s = DApp.web3.eth.getGasPrice();
-/*    IFAPI.IFAPI.ManagerInst = new DApp.web3.eth.Contract(
-      _mgr.abi,_mgr.address,)*/
+    DApp.web3.eth.getGasPrice().then((gasPrice)=>{
+      console.log(gasPrice);
+      DApp.runtime.infuraHandler.setGasPrice(gasPrice)
+      let opts = DApp.runtime.infuraHandler.getContractOpts()
+      DApp.IFAPI.ManagerInst = new DApp.web3.eth.Contract(
+      _mgr.abi,_mgr.address,opts)
+    });
 
   }
 }catch(e){
   console.log(e.message)
   throw 'DApp initial fail.'
 }
+
 
 
 global.DApp = DApp
