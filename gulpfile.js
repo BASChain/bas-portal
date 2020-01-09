@@ -8,6 +8,7 @@ const assign = require('lodash.assign'),
   //brfs = require('brfs'),
   browserify = require('browserify'),
   buffer = require('vinyl-buffer'),
+  DateFormat = require('fast-date-format'),
   del = require('del'),
   dotenv = require('dotenv'),
   envify = require('envify/custom'),
@@ -23,12 +24,28 @@ const assign = require('lodash.assign'),
   source = require('vinyl-source-stream'),
   sourcemaps = require('gulp-sourcemaps'),
   terser = require('gulp-terser-js'),
+  watch = require('gulp-watch'),
   watchify = require('watchify')
 
+const endOfStream = pify(require('end-of-stream'))
+
+
+var dateFormat = new DateFormat('YYDDDD')
+const isPreRelease = true
+
+const liveOpts = {
+  port:58415
+}
+
+if(isPreRelease){
+  dateFormat = new DateFormat('MMDDDD_HHmm')
+}
 const envArgs = dotenv.config({
   path:path.resolve(process.cwd(),'./.config/.env'),
   encoding:'utf8'
 })
+
+
 
 if(envArgs.error){
   throw envArgs.error
@@ -48,7 +65,8 @@ var ProPaths = {
   SRC:"src",
   ASSETS:"public",
   BUILD:"build",
-  DEST:"dist"
+  DEST:"dist",
+  CONFIG:".config"
 }
 
 var imagePreOpts = {
@@ -56,6 +74,32 @@ var imagePreOpts = {
 }
 
 /* ======================= Edit Version =========================== */
+const DAppInfoFile = `${ProPaths.CONFIG}/version-info.json`
+console.log(DAppInfoFile)
+gulp.task('edit:dappinfo',function(){
+  return gulp.src(DAppInfoFile)
+    .pipe(jsoneditor((json) => {
+      console.log(JSON.stringify(json,null,2))
+      return writeDAppInfo(json)
+    }))
+    .pipe(rename('info.json'))
+    .pipe(gulp.dest(`${ProPaths.SRC}/scripts/dapp/`,{overwrite:true}))
+})
+
+function writeDAppInfo(json) {
+  if(!json )json = {}
+  let _ver = process.env.DAPP_VER || pkgJson.version
+  let _ts = dateFormat.format(new Date())
+
+  json.version = _ver
+  json.name = process.env.DAPP_NAME || pkgJson.name ||'BasDApp'
+  json.author = pkgJson.author || process.env.DAPP_AUTHOR
+  json.buildTag = `${_ver}_${_ts}`
+
+  console.log(JSON.stringify(json,null,2))
+
+  return json
+}
 
 /* ====================== clean ========================== */
 gulp.task('clean',function(){
@@ -66,7 +110,8 @@ gulp.task('clean',function(){
 /* ====================== Bundles ====================== */
 //use browserify-shim see https://medium.com/@mattdesl/gulp-and-browserify-shim-f1c587cb56b9
 const buildJsModules = [
-  "basmlib"
+  "basmlib",
+  "dapp-info"
 ]
 
 createTasksForBuildJSModules({
@@ -144,7 +189,7 @@ function createTasks4Module(opts) {
       buildStream = buildStream
         .pipe(terser({
           mangle:{
-            reserved: ['BAS']
+            reserved: ['BAS','Copyright (c) 2020 BAS']
           }
         }))
     }
@@ -177,7 +222,7 @@ function generateBrowserify(opts,performBundle) {
   const bwOpts = assign({},watchify.args,{
     plugin:[],
     transform:[],
-    debug:opts.buildSourceMaps,
+    debug:isDevelopmentMode(),
     entries:opts.filepath
   })
 
@@ -202,7 +247,7 @@ function generateBrowserify(opts,performBundle) {
 gulp.task('build:scss',createScssBuildTask({
   src:`${ProPaths.SRC}/scss/main.scss`,
   dest:`${ProPaths.BUILD}/css`,
-  devMode:false,
+  devMode:true,
   pattern:`${ProPaths.SRC}/scss/**/*.scss`
 }))
 
@@ -213,7 +258,7 @@ function createScssBuildTask({src,dest,devMode,pattern}) {
         const stream = buildScss()
         await endOfStream(stream)
         console.log(`${event.path}`,'changed')
-
+        livereload.changed(event.path)
       })
 
       return buildScssWithSourceMaps()
@@ -255,12 +300,24 @@ function isDevelopmentMode(){
   return !(process.env.NODE_ENV == 'production')
 }
 
+function beep() {
+  process.stdout.write('\x07')
+}
 /* ================== defined global task at tail =========================== */
+
+gulp.task('watch',function(){
+  livereload.listen(liveOpts)
+})
+
+//keep 'edit:dappinfo' at first task
 gulp.task('build',gulp.series(
+  'edit:dappinfo',
   'clean',
+  'build:scss',
   gulp.parallel(
     "modules:bundle"
-  )
+  ),
+  'watch'
 ))
 
 

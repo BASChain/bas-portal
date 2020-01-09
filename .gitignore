@@ -106,3 +106,4 @@ dist
 # build dev
 yarn.lock
 build
+tmp

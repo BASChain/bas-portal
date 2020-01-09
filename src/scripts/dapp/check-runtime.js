@@ -26,6 +26,10 @@ class BrowerRuntime {
     return this.Info.detectOS
   }
 
+  hasMetaMask(){
+    return !!(window.ethereum && window.ethereum.isMetaMask)
+  }
+
   supportMetaMask(){
     let bwName = this.Info.name
     if(!bwName) return false;
@@ -34,7 +38,6 @@ class BrowerRuntime {
 }
 
 BrowerRuntime.Supports = ["chrome","firefox"]
-
 
 
 function _parseUserAgent(){
@@ -69,7 +72,7 @@ function _detectOS(){
     return os.rule && os.rule.test(_ua)
   })[0]
 
-  this.Info.detectOS = detected ? detected.name || null
+  this.Info.detectOS = detected ? detected.name : null
   return detected
 }
 

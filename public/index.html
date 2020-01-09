@@ -8,12 +8,81 @@
 
   <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"> -->
   <!-- custom -->
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/index.css">
 
 </head>
-<body>
-  <div id="root"></div>
+<body id="DAppTop">
+
+<!-- NAV TOP -->
+  <header class="header-bar">
+    <nav class="navbar navbar-expand-lg fixed-top headerbar-shadow" id="topNav">
+      <div class="navbar-header">
+        <a href="#DAppTop" class="navbar-brand">
+          <img class="img-fluid logo-responsive" src="images/bas-logo.png" >
+          BAS
+        </a>
+        <button class="navbar-toggle navbar-toggler-right"
+          aria-controls="navbarResponsive"
+          data-target="#navbar-menu" aria-expanded="false"
+          data-toggle="collapse" type="button">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-menu">
+         <ul class="nav navbar-nav ml-auto">
+           <li class="nav-item">
+            <a class="nav-link i18n" href="#" data-en="" data-cn="">Domains</a>
+           </li>
+           <li class="nav-item">
+            <a class="nav-link i18n" href="#" data-en="" data-cn="">Extension</a>
+           </li>
+           <li class="nav-item">
+            <a class="nav-link i18n" href="#" data-en="" data-cn="">Account</a>
+           </li>
+         </ul>
+       </div>
+
+    </nav>
+  </header>
+<!-- NAV TOP -->
+
+<section class="section-full" id="search-section">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <h2 class="text-capitalize">
+        <span class="search-title search-text">search</span>
+        <span class="search-title domain-text">domains</span>
+      </h2>
+    </div>
+    <div class="row justify-content-center align-items-center">
+      <form action="#" class="form-inline " id="searchForm">
+        <span>
+          <i class="material-icons">search</i>
+          <input class="form-control search-alias-input"
+            type="text" name="searchAlias" placeholder="please enter a domain">
+        </span>
+        <span class="search-input-btn">
+          <input type="submit" class="btn btn-primary" value="Search">
+        </span>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- SCRIPTS BEGIN -->
+  <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/dapp-info-bundle.js"></script>
   <script src="/js/basmlib-bundle.js"></script>
+<!-- SCRIPTS END -->
 </body>
 </html>
