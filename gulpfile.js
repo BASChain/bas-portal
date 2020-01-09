@@ -231,10 +231,21 @@ function generateBrowserify(opts,performBundle) {
     .transform('brfs')
 
   b.transform(envify({
-    NODE_ENV:process.env.NODE_ENV || 'development'
+    NODE_ENV:process.env.NODE_ENV || 'development',
+    INFURA_PROJECTID: process.env.INFURA_PROJECTID ||'',
+    INFURA_SECRET:process.env.INFURA_SECRET ||''
   }),{
     global:true
   })
+
+  if(opts.watch) {
+    b = watchify(b)
+    b.on('update',async (ids) =>{
+      const stream = performBundle()
+      await endOfStream(stream)
+      livereload.changed(`${ids}`)
+    })
+  }
 
   return b
 }
