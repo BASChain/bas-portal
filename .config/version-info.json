@@ -3,5 +3,6 @@
   "version":"",
   "author":"bas",
   "buildTag":"",
-  "description":""
+  "description":"",
+  "chainId":3
 }

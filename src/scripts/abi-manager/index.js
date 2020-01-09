@@ -1,7 +1,8 @@
 'use strict'
 
 const ABIS = require('./contracts.js')
-const { Networks ,CheckNetwork } = require('./networks.js')
+const { CheckNetwork } = require('../bas-networks')
+const Networks = require('./networks.js')
 const DEF_NETWORK = 'ropsten';
 const DEF_GASPRICE = '20000000000'
 const DEF_MANAGER_NAME = "BAS_Manager_Simple"
@@ -39,7 +40,7 @@ class AbiManager {
 
 	getManagerContract(){
 		let _mgr = {
-			abi: ABIS[DEF_MANAGER_NAME] 
+			abi: ABIS[DEF_MANAGER_NAME]
 		}
 
 		if(this.addresses[DEF_MANAGER_NAME]){

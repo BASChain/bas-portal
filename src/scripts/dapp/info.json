@@ -2,6 +2,7 @@
   "name": "BASDApp",
   "version": "0.0.1",
   "author": "BAS",
-  "buildTag": "0.0.1_01009_2030",
-  "description": ""
+  "buildTag": "0.0.1_01009_2208",
+  "description": "",
+  "chainId": 3
 }

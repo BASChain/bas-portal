@@ -26,22 +26,6 @@ const Networks = {
 	}
 }
 
-function CheckNetwork(network){
-	if(typeof network == undefined)
-		return null
 
-	switch (network) {
-		case "1":
-			return "mainnet"
-		case "mainnet":
-			return "mainnet"
-		case "3":
-			return "ropsten"
-		case "ropsten":
-			return "ropsten"
-		default:
-			return null;
-	}
-}
 
-module.exports = { Networks , CheckNetwork }
+module.exports =Networks

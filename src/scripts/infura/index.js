@@ -1,4 +1,5 @@
 const Settings = require('./settings.js')
+const { CheckNetwork } = require('../bas-networks')
 
 class InfuraHandler {
 	constructor(opts) {
@@ -17,6 +18,7 @@ class InfuraHandler {
 			}
 		}
 	}
+
 
 	getProviderUrl(type,network) {
 		if(!CheckNetwork(network))
@@ -69,26 +71,8 @@ function buildWssProvide(network){
 
 const HasKey = (obj,key) => Object.prototype.hasOwnProperty.call(obj,key)
 
-Infura.HttpSchema = "https"
-Infura.WssSchema = "wss"
-
-function CheckNetwork(network){
-	if(typeof network == undefined)
-		return null
-
-	switch (network) {
-		case "1":
-			return "mainnet"
-		case "mainnet":
-			return "mainnet"
-		case "3":
-			return "ropsten"
-		case "ropsten":
-			return "ropsten"
-		default:
-			return null;
-	}
-}
+InfuraHandler.HttpSchema = "https"
+InfuraHandler.WssSchema = "wss"
 
 module.exports = {
 	HasKey,
