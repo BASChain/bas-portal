@@ -8,15 +8,20 @@ class InfuraHandler {
 		if(typeof opts === 'string') { //
 			for(var i =0 ;i<settKeys.length;i++){
 				let _key = settKeys[i]
-				this[_key] = settKeys[_key]
+				this[_key] = Settings[_key]
 			}
 			this['from'] = opts
 		}else if(typeof opts === 'object'){
 			for(var i =0 ;i<settKeys.length;i++){
 				let _key = settKeys[i]
-				this[_key] = HasKey(opts,_key) ? opts[_key] : settKeys[_key]
+				this[_key] = HasKey(opts,_key) ? opts[_key] : Settings[_key]
 			}
-		}
+		}else{
+      for(var i =0 ;i<settKeys.length;i++){
+        let _key = settKeys[i]
+        this[_key] = Settings[_key]
+      }
+    }
 	}
 
 

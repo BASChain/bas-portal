@@ -15,7 +15,6 @@ class BrowerRuntime {
   constructor(uAgent){
     this.ua = uAgent || window.navigator.userAgent
     this.Info = {}
-
     let info = _parseUserAgent.call(this)
     if(info){
       this.Info = Object.assign({},this.Info,info)

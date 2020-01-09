@@ -43,7 +43,7 @@ class AbiManager {
 			abi: ABIS[DEF_MANAGER_NAME]
 		}
 
-		if(this.addresses[DEF_MANAGER_NAME]){
+		if(this.Addresses[DEF_MANAGER_NAME]){
 			_mgr.address = this.Addresses[DEF_MANAGER_NAME]
 		}else{
 			throw 'not set manager contract address.'
