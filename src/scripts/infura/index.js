@@ -1,4 +1,5 @@
 const Settings = require('./settings.js')
+const { CheckNetwork } = require('../bas-networks')
 
 class InfuraHandler {
 	constructor(opts) {
@@ -7,16 +8,22 @@ class InfuraHandler {
 		if(typeof opts === 'string') { //
 			for(var i =0 ;i<settKeys.length;i++){
 				let _key = settKeys[i]
-				this[_key] = settKeys[_key]
-			}			
+				this[_key] = Settings[_key]
+			}
 			this['from'] = opts
 		}else if(typeof opts === 'object'){
 			for(var i =0 ;i<settKeys.length;i++){
 				let _key = settKeys[i]
-				this[_key] = HasKey(opts,_key) ? opts[_key] : settKeys[_key]
-			}	
-		}
+				this[_key] = HasKey(opts,_key) ? opts[_key] : Settings[_key]
+			}
+		}else{
+      for(var i =0 ;i<settKeys.length;i++){
+        let _key = settKeys[i]
+        this[_key] = Settings[_key]
+      }
+    }
 	}
+
 
 	getProviderUrl(type,network) {
 		if(!CheckNetwork(network))
@@ -44,7 +51,7 @@ class InfuraHandler {
 	setFrom(from){
 		if(from)this.from = from
 	}
-	
+
 	setGasPrice(gasPrice){
 		if(gasPrice)this.gasPrice = gasPrice
 	}
@@ -67,28 +74,10 @@ function buildWssProvide(network){
 	return `${InfuraHandler.WssSchema}://:${network}.infura.io/ws/v3/${_projectId}`
 }
 
-const HasKey = (obj,key) => Object.prototype.hasOwnProperty.call(obj,key) 
+const HasKey = (obj,key) => Object.prototype.hasOwnProperty.call(obj,key)
 
-Infura.HttpSchema = "https"
-Infura.WssSchema = "wss"
-
-function CheckNetwork(network){
-	if(typeof network == undefined)
-		return null
-
-	switch (network) {
-		case "1":
-			return "mainnet"
-		case "mainnet":
-			return "mainnet"
-		case "3":
-			return "ropsten"
-		case "ropsten":
-			return "ropsten"
-		default:
-			return null;	
-	}
-}
+InfuraHandler.HttpSchema = "https"
+InfuraHandler.WssSchema = "wss"
 
 module.exports = {
 	HasKey,

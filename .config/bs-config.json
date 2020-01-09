@@ -1,0 +1,27 @@
+{
+  "port": 8140,
+  "bind": "localhost",
+  "browser":["firefox"],
+  "files": [
+    "./public/**/*.{html,htm,css,js}",
+    "./src/**/*.{js,html,css}",
+    "./build/**/*.{js,html,css}"
+  ],
+  "index": "index.html",
+  "server": [
+    "./build",
+    "./public"
+  ],
+  "watchexps" : [
+    "public/**.js # # reload",
+    "public/**/*.css # # reloadcss",
+    "public/**.html # # reload",
+    "build/**.css #  # reloadcss",
+    "build/**/*.js # echo wow # reload"
+  ],
+  "interval"  : 500,
+  "delay"   : 1000,
+  "quiet"   : false,
+  "open"    : true,
+  "http2"   : false
+}
