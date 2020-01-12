@@ -5,7 +5,7 @@ const { CheckNetwork } = require('../bas-networks')
 const Networks = require('./networks.js')
 const DEF_NETWORK = 'ropsten';
 const DEF_GASPRICE = '20000000000'
-const DEF_MANAGER_NAME = "BAS_Manager_Simple"
+const DEF_MANAGER_NAME = "BAS_Data_Management"
 
 /**
  * Contract Manager
