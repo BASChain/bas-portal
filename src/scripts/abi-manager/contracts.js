@@ -314,40 +314,56 @@ module.exports = {
       "type": "event"
     }
   ],
-  "BAS_Manager": [
+  "BAS_Data_Management": [
     {
-      "constant": false,
+      "constant": true,
       "inputs": [
         {
-          "internalType": "string",
-          "name": "key",
+          "name": "str",
           "type": "string"
-        },
+        }
+      ],
+      "name": "isSub",
+      "outputs": [
         {
-          "internalType": "bytes",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
           "name": "data",
           "type": "bytes"
         }
       ],
-      "name": "change",
-      "outputs": [],
+      "name": "validDataFormat",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
       "payable": false,
-      "stateMutability": "nonpayable",
+      "stateMutability": "pure",
       "type": "function"
     },
     {
       "constant": false,
       "inputs": [
         {
-          "internalType": "uint16",
           "name": "newPrice",
-          "type": "uint16"
+          "type": "uint256"
         }
       ],
-      "name": "changePrice",
+      "name": "changePricePureRoot",
       "outputs": [
         {
-          "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
@@ -360,18 +376,78 @@ module.exports = {
       "constant": false,
       "inputs": [
         {
-          "internalType": "string",
+          "name": "hashKey",
+          "type": "bytes32"
+        },
+        {
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "name": "additionalInfo",
+          "type": "bytes"
+        }
+      ],
+      "name": "changeReord",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "hashKey",
+          "type": "bytes32"
+        }
+      ],
+      "name": "subDomainSwitch",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "price_root",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
           "name": "key",
           "type": "string"
         },
         {
-          "internalType": "uint8",
-          "name": "y",
+          "name": "dtype",
           "type": "uint8"
         },
         {
-          "internalType": "bytes",
+          "name": "y",
+          "type": "uint256"
+        },
+        {
           "name": "data",
+          "type": "bytes"
+        },
+        {
+          "name": "additionalInfo",
           "type": "bytes"
         }
       ],
@@ -382,10 +458,326 @@ module.exports = {
       "type": "function"
     },
     {
+      "constant": true,
+      "inputs": [],
+      "name": "price_pure_root",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "price_sub",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getMyDomainCounts",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "constant": false,
       "inputs": [
         {
-          "internalType": "address",
+          "name": "newPrice",
+          "type": "uint256"
+        }
+      ],
+      "name": "changePriceRoot",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "n",
+          "type": "uint256"
+        }
+      ],
+      "name": "getMyDomainByIndex",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "name": "isPureRoot",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newPrice",
+          "type": "uint256"
+        }
+      ],
+      "name": "changePriceSubRoot",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "hashKey",
+          "type": "bytes32"
+        },
+        {
+          "name": "y",
+          "type": "uint256"
+        }
+      ],
+      "name": "extendRent",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "checkAllowance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "hashKey",
+          "type": "bytes32"
+        }
+      ],
+      "name": "queryByHash",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        },
+        {
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "bool"
+        },
+        {
+          "name": "",
+          "type": "bytes4"
+        },
+        {
+          "name": "",
+          "type": "bytes16"
+        },
+        {
+          "name": "",
+          "type": "bytes1"
+        },
+        {
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "name": "",
+          "type": "address"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "key",
+          "type": "string"
+        }
+      ],
+      "name": "hash",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "domain",
+          "type": "string"
+        },
+        {
+          "name": "y",
+          "type": "uint256"
+        }
+      ],
+      "name": "evalueRent",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "transferDomainOwnerShip",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "hashKey",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "name": "isRoot",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
           "name": "newOwner",
           "type": "address"
         }
@@ -397,9 +789,22 @@ module.exports = {
       "type": "function"
     },
     {
+      "constant": true,
+      "inputs": [],
+      "name": "token",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
-          "internalType": "address",
           "name": "tokenAddr",
           "type": "address"
         }
@@ -409,599 +814,87 @@ module.exports = {
       "type": "constructor"
     },
     {
-      "constant": true,
-      "inputs": [],
-      "name": "checkAllowance",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
+      "anonymous": false,
       "inputs": [
         {
-          "internalType": "uint8",
-          "name": "y",
-          "type": "uint8"
-        }
-      ],
-      "name": "checkRent",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "name": "DataRecords",
-      "outputs": [
-        {
-          "internalType": "bytes4",
-          "name": "IPv4",
-          "type": "bytes4"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "IPv6",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "bytes1",
-          "name": "BCLength",
-          "type": "bytes1"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "BCAddress",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "address",
-          "name": "EthAddress",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "internalType": "string",
+          "indexed": false,
           "name": "key",
           "type": "string"
-        }
-      ],
-      "name": "hash",
-      "outputs": [
+        },
         {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "pure",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "owner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
+          "indexed": false,
+          "name": "owner",
           "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "price",
-      "outputs": [
+        },
         {
-          "internalType": "uint256",
-          "name": "",
+          "indexed": false,
+          "name": "year",
           "type": "uint256"
         }
       ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
+      "name": "Rent",
+      "type": "event"
     },
     {
-      "constant": true,
+      "anonymous": false,
       "inputs": [
         {
-          "internalType": "bytes32",
-          "name": "bc",
-          "type": "bytes32"
+          "indexed": false,
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "to",
+          "type": "address"
         }
       ],
-      "name": "queryByBCAddress",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "bytes4",
-          "name": "",
-          "type": "bytes4"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "bytes1",
-          "name": "",
-          "type": "bytes1"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
+      "name": "TransferDomainOwnerShip",
+      "type": "event"
     },
     {
-      "constant": true,
+      "anonymous": false,
+      "inputs": [],
+      "name": "Change",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
       "inputs": [
         {
-          "internalType": "bytes32",
+          "indexed": false,
           "name": "hashKey",
           "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "newExpireTime",
+          "type": "uint256"
         }
       ],
-      "name": "queryByHash",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "bytes4",
-          "name": "",
-          "type": "bytes4"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "bytes1",
-          "name": "",
-          "type": "bytes1"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "internalType": "bytes4",
-          "name": "IPv4",
-          "type": "bytes4"
-        }
-      ],
-      "name": "queryByIPv4",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "bytes4",
-          "name": "",
-          "type": "bytes4"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "bytes1",
-          "name": "",
-          "type": "bytes1"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "internalType": "bytes16",
-          "name": "IPv6",
-          "type": "bytes16"
-        }
-      ],
-      "name": "queryByIPv6",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "bytes4",
-          "name": "",
-          "type": "bytes4"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "bytes1",
-          "name": "",
-          "type": "bytes1"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "key",
-          "type": "string"
-        }
-      ],
-      "name": "queryByString",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "bytes4",
-          "name": "",
-          "type": "bytes4"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "bytes1",
-          "name": "",
-          "type": "bytes1"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "token",
-      "outputs": [
-        {
-          "internalType": "contract ERC20",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
+      "name": "ExtendRent",
+      "type": "event"
     }
   ],
-  "BAS_Manager_Simple":[
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "key",
-          "type": "string"
-        },
-        {
-          "internalType": "uint8",
-          "name": "y",
-          "type": "uint8"
-        },
-        {
-          "internalType": "bytes",
-          "name": "data",
-          "type": "bytes"
-        }
-      ],
-      "name": "rent",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
+  "DomainUtils": [
     {
       "constant": true,
       "inputs": [
         {
-          "internalType": "bytes32",
-          "name": "bc",
-          "type": "bytes32"
-        }
-      ],
-      "name": "queryByBCAddress",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "bytes4",
-          "name": "",
-          "type": "bytes4"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "bytes1",
-          "name": "",
-          "type": "bytes1"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "internalType": "uint16",
-          "name": "newPrice",
-          "type": "uint16"
-        }
-      ],
-      "name": "changePrice",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "owner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "checkAllowance",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "price",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "hashKey",
-          "type": "bytes32"
-        }
-      ],
-      "name": "queryByHash",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "bytes4",
-          "name": "",
-          "type": "bytes4"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "bytes1",
-          "name": "",
-          "type": "bytes1"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "key",
+          "name": "str",
           "type": "string"
         }
       ],
-      "name": "queryByString",
+      "name": "isPureRootDomain",
       "outputs": [
         {
-          "internalType": "bytes32",
           "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "bytes4",
-          "name": "",
-          "type": "bytes4"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "bytes1",
-          "name": "",
-          "type": "bytes1"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "key",
-          "type": "string"
-        }
-      ],
-      "name": "hash",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
+          "type": "bool"
         }
       ],
       "payable": false,
@@ -1012,125 +905,58 @@ module.exports = {
       "constant": true,
       "inputs": [
         {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "name": "DataRecords",
-      "outputs": [
-        {
-          "internalType": "bytes4",
-          "name": "IPv4",
-          "type": "bytes4"
-        },
-        {
-          "internalType": "bytes16",
-          "name": "IPv6",
-          "type": "bytes16"
-        },
-        {
-          "internalType": "bytes1",
-          "name": "BCLength",
-          "type": "bytes1"
-        },
-        {
-          "internalType": "bytes32",
-          "name": "BCAddress",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "address",
-          "name": "EthAddress",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [
-        {
-          "internalType": "uint8",
-          "name": "y",
-          "type": "uint8"
-        }
-      ],
-      "name": "checkRent",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "key",
+          "name": "str",
           "type": "string"
-        },
-        {
-          "internalType": "bytes",
-          "name": "data",
-          "type": "bytes"
         }
       ],
-      "name": "change",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
+      "name": "getRootDomain",
+      "outputs": [
         {
-          "internalType": "address",
-          "name": "newOwner",
-          "type": "address"
+          "name": "",
+          "type": "string"
         }
       ],
-      "name": "transferOwnership",
-      "outputs": [],
       "payable": false,
-      "stateMutability": "nonpayable",
+      "stateMutability": "pure",
       "type": "function"
     },
     {
       "constant": true,
-      "inputs": [],
-      "name": "token",
+      "inputs": [
+        {
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "name": "isSubDomain",
       "outputs": [
         {
-          "internalType": "contract ERC20",
           "name": "",
-          "type": "address"
+          "type": "bool"
         }
       ],
       "payable": false,
-      "stateMutability": "view",
+      "stateMutability": "pure",
       "type": "function"
     },
     {
+      "constant": true,
       "inputs": [
         {
-          "internalType": "address",
-          "name": "tokenAddr",
-          "type": "address"
+          "name": "str",
+          "type": "string"
+        }
+      ],
+      "name": "isRootDomain",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
         }
       ],
       "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "constructor"
+      "stateMutability": "pure",
+      "type": "function"
     }
-  ]	
+  ]
 }

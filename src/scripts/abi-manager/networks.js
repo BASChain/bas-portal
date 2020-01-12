@@ -18,11 +18,11 @@
 const Networks = {
 	ropsten:{
 		"BAS_Token":"0x3058A7Ed6a0E15691F9e309cbe982A820928e055",
-		"BAS_Manager_Simple":"0x70BACAb31f1897dAFECa711475Fa81Fe49e5e04C"
+		"BAS_Data_Management":"0xFa77472aFa6ce24C5752fDB6f46d4385deC11419"
 	},
 	mainnet:{
 		"BAS_Token":"",
-		"BAS_Manager_Simple":""
+		"BAS_Data_Management":""
 	}
 }
 
