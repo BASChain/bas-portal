@@ -1,8 +1,8 @@
 {
-  "name": "BASDApp",
+  "name": "bas-portal",
   "version": "0.0.1",
   "author": "BAS",
-  "buildTag": "0.0.1_01009_2302",
+  "buildTag": "0.0.1_01011_1138",
   "description": "",
   "chainId": 3
 }
