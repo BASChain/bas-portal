@@ -34,6 +34,22 @@ class BrowerRuntime {
     if(!bwName) return false;
     return BrowerRuntime.Supports.filter( b => bwName.toLowerCase() == b).length > 0
   }
+
+  setLastError(error){
+    this.lastError = error
+  }
+
+  getLastError(){
+    if(typeof this.lastError === 'object' && this.lastError.message){
+      return this.lastError.message
+    }else if (typeof this.lastError === 'object' && !this.lastError.message){
+      return JSON.stringify(this.lastError)
+    }else if(typeof this.lastError === 'string'){
+      return this.lastError
+    }else{
+      return ''
+    }
+  }
 }
 
 BrowerRuntime.Supports = ["chrome","firefox"]

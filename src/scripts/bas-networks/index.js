@@ -23,10 +23,14 @@ function CheckNetwork(network){
     return null
 
   switch (network) {
+    case 1 :
+      return "mainnet"
     case "1":
       return "mainnet"
     case "mainnet":
       return "mainnet"
+    case 3 :
+      return "ropsten"
     case "3":
       return "ropsten"
     case "ropsten":
